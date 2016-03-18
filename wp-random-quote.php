@@ -11,6 +11,7 @@
 
 function wp_random_quote_shortcode($atts){
   $a = shortcode_atts(array(), $atts);
+  
   $quotes = preg_split("/\r\n/",get_option('wp-random-quote-quotes'));
   $i = rand(0, count($quotes) - 1);
   
@@ -38,7 +39,7 @@ function wp_random_quote_admin(){
     <form method="POST">
       <div class="controls">
         <label for="quotes">Quotes</label>
-        <textarea name="wp-random-quotes"></textarea>
+        <textarea name="wp-random-quotes" cols="100" rows="20"><?php echo get_option('wp-random-quote-quotes'); ?></textarea>
       </div>
       <input type="submit" name="wp-random-quotes-submit"/>
     </form>
