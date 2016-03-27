@@ -1,3 +1,4 @@
+###Simple Random Quote
 Tags: Random, shortcode
 Requires at least 4.0
 Tested up to: 4.4.2
@@ -16,4 +17,5 @@ Use the shortcode \[wp_random_quote\] to embed in your site
 
 ##Changelog
 
+#1.0.0
 plugin is born. 
