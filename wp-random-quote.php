@@ -29,7 +29,9 @@ function wp_random_quote_admin_menu(){
 
 function wp_random_quote_admin(){
   if(isset($_POST['wp-random-quotes-submit']) && $_POST['wp-random-quotes-submit'] == 'Submit'){
-    update_option('wp-random-quote-quotes', filter_input(INPUT_POST, 'wp-random-quotes'));
+    if(check_admin_referer('simple-random-quotes', 'update-quotes'))
+    $quotes =  filter_input(INPUT_POST, 'wp-random-quotes', FILTER_SANITIZE_SPECIAL_CHARS);
+    update_option('wp-random-quote-quotes', $quotes);
   } 
   
   
@@ -40,6 +42,7 @@ function wp_random_quote_admin(){
       <div class="controls">
         <label for="quotes">Quotes</label>
         <textarea name="wp-random-quotes" cols="100" rows="20"><?php echo get_option('wp-random-quote-quotes'); ?></textarea>
+        <?php wp_nonce_field('simple-random-quotes', 'update-quotes'); ?>
       </div>
       <input type="submit" name="wp-random-quotes-submit"/>
     </form>
